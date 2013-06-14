@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 backgroundColor="#D1D1D1" borderAlpha="0.64" 
+		 borderColor="#CECECE" borderVisible="false"
+		 cornerRadius="10" horizontalCenter="0"
+		 paddingBottom="15" paddingLeft="5" 
+		 paddingRight="5" paddingTop="30" verticalCenter="0"
+		 verticalGap="5" resizeEffect="{resize}">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<mx:Resize id="resize" duration="800" easingFunction="{Back.easeInOut}" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.effects.easing.Back;
+			
+			public static const PARSE:String = "parse";
+			
+			[Bindable]
+			public var outputText:String = "";
+			
+			[Bindable]
+			public var inputText:String = "";
+			
+			private function onEnter():void {
+				inputText = txtInput.text;
+				dispatchEvent( new Event( PARSE ) );
+				
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:TextInput id="txtInput" width="100%" borderColor="#CACACA" dropShadowVisible="false"
+				  enter="onEnter()" />
+	<mx:Button label="Go" click="onEnter()"/>
+	<mx:Spacer width="100%" height="10"/>
+	<mx:Text width="300" text="{outputText}"/>
+	
+</mx:VBox>
